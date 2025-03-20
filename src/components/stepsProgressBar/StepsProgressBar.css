@@ -1,0 +1,76 @@
+/* Contenedor general */
+.steps-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.steps-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px; /* Ajusta según tu diseño */
+  width: 100%;
+}
+
+/* Cada "step-item" se posiciona relativo para la línea que lo conecta con el siguiente */
+.step-item {
+  position: relative;
+  text-align: center;
+  flex: 1;
+}
+
+/* Línea que conecta un paso con el siguiente */
+.step-line {
+  position: absolute;
+  top: 20px; /* Ajusta para centrar verticalmente la línea en el círculo */
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background-color: #ccc;
+  z-index: 1;
+}
+
+/* El círculo que contiene el ícono o el check */
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  z-index: 2;
+  position: relative;
+  font-size: 1.2rem;
+}
+
+/* Estados de los pasos */
+.step-circle.completed {
+  background-color: #4324f0; /* Naranja para completado */
+}
+
+.step-circle.active {
+  background-color: #4324f0; /* Naranja para el paso actual */
+}
+
+.step-circle.inactive {
+  background-color: #ccc; /* Gris para pasos futuros */
+}
+
+/* Label debajo del círculo */
+.step-label {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+  width: 80px; /* Ajusta para evitar que salte de línea si el texto es largo */
+  margin: 0.5rem auto 0;
+}
+
+/* Ajuste de la línea en el último paso para que no sobresalga */
+.step-item:last-child .step-line {
+  display: none;
+}
