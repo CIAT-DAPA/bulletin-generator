@@ -1,0 +1,32 @@
+.bulletin-container {
+  width: 380px;
+  height: 725px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+}
+
+.bulletin-header {
+  background-color: #fff;
+  padding: 0px 10px;
+  border-top: 6px solid #2f320d;
+  font-size: 14px;
+}
+
+.bulletin-body {
+  flex-grow: 1;
+  position: relative;
+}
+
+.bulletin-content {
+  position: relative;
+  padding: 20px;
+  text-align: center;
+}
+
+.bulletin-footer {
+  padding: 5px 10px;
+  color: #fff;
+  background-color: #2f320d;
+}

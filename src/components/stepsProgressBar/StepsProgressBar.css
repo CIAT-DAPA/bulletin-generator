@@ -50,11 +50,11 @@
 
 /* Estados de los pasos */
 .step-circle.completed {
-  background-color: #4324f0; /* Naranja para completado */
+  background-color: #2f320d; /* Naranja para completado */
 }
 
 .step-circle.active {
-  background-color: #4324f0; /* Naranja para el paso actual */
+  background-color: #2f320d; /* Naranja para el paso actual */
 }
 
 .step-circle.inactive {

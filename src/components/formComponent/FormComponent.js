@@ -1,4 +1,5 @@
 import React from "react";
+import RainMapForm from "./RainMapForm";
 
 function FormComponent({ currentStep, onStepChange, totalSteps }) {
   const handleNext = () => {
@@ -17,43 +18,35 @@ function FormComponent({ currentStep, onStepChange, totalSteps }) {
     }
   };
 
+  const renderStepForm = () => {
+    switch (currentStep) {
+      case 1:
+        return <RainMapForm />;
+      // case 2: return <LunarCalendarForm />;
+      default:
+        return <div>Form for step {currentStep} not defined yet.</div>;
+    }
+  };
+
   return (
     <div>
       <h3>Formulario - Sección {currentStep}</h3>
-      <form>
-        {/* Tus campos, selects, etc. */}
-        <div className="mb-3">
-          <label htmlFor={`input${currentStep}`} className="form-label">
-            Campo de Texto
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id={`input${currentStep}`}
-            placeholder="Escribe aquí..."
-          />
-        </div>
-
-        <div className="d-flex justify-content-between">
-          {currentStep > 1 && (
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={handlePrev}
-            >
-              Anterior
-            </button>
-          )}
-
+      {renderStepForm()}
+      <div className="d-flex justify-content-between mt-3">
+        {currentStep > 1 && (
           <button
             type="button"
-            className="btn btn-primary"
-            onClick={handleNext}
+            className="btn btn-secondary"
+            onClick={handlePrev}
           >
-            {currentStep < totalSteps ? "Siguiente" : "Finalizar"}
+            Anterior
           </button>
-        </div>
-      </form>
+        )}
+
+        <button type="button" className="btn btn-primary" onClick={handleNext}>
+          {currentStep < totalSteps ? "Siguiente" : "Finalizar"}
+        </button>
+      </div>
     </div>
   );
 }
