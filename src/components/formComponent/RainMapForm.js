@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { FormDataContext } from "../../context/FormDataContext";
 
-function RainMapForm() {
-  const { formData, setFormData } = useContext(FormDataContext);
+function RainMapForm({ errors, handleFieldChange }) {
+  const { formData } = useContext(FormDataContext);
 
   const moonPhases = [
     "Luna Nueva",
@@ -14,7 +14,7 @@ function RainMapForm() {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file && file.type === "image/png") {
-      setFormData({ ...formData, mapImage: file });
+      handleFieldChange("mapImage", file);
     } else {
       alert("Please upload a PNG image.");
     }
@@ -34,11 +34,12 @@ function RainMapForm() {
             className="form-control"
             id="rainSeason"
             value={formData.rainSeason}
-            onChange={(e) =>
-              setFormData({ ...formData, rainSeason: e.target.value })
-            }
+            onChange={(e) => handleFieldChange("rainSeason", e.target.value)}
             placeholder="ej. primera, segunda..."
           />
+          {errors.rainSeason && (
+            <div className="text-danger">{errors.rainSeason}</div>
+          )}
         </div>
       </fieldset>
 
@@ -56,6 +57,9 @@ function RainMapForm() {
             id="mapImage"
             onChange={handleImageUpload}
           />
+          {errors.mapImage && (
+            <div className="text-danger">{errors.mapImage}</div>
+          )}
         </div>
       </fieldset>
 
@@ -71,11 +75,12 @@ function RainMapForm() {
             className="form-control"
             id="startDate"
             value={formData.startDate}
-            onChange={(e) =>
-              setFormData({ ...formData, startDate: e.target.value })
-            }
+            onChange={(e) => handleFieldChange("startDate", e.target.value)}
             max={formData.endDate ? formData.endDate : ""}
           />
+          {errors.startDate && (
+            <div className="text-danger">{errors.startDate}</div>
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="startMoon" className="form-label">
@@ -85,9 +90,7 @@ function RainMapForm() {
             className="form-select"
             id="startMoon"
             value={formData.startMoon}
-            onChange={(e) =>
-              setFormData({ ...formData, startMoon: e.target.value })
-            }
+            onChange={(e) => handleFieldChange("startMoon", e.target.value)}
           >
             <option value="">Selecciona una fase lunar</option>
             {moonPhases.map((phase, idx) => (
@@ -96,6 +99,9 @@ function RainMapForm() {
               </option>
             ))}
           </select>
+          {errors.startMoon && (
+            <div className="text-danger">{errors.startMoon}</div>
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="endDate" className="form-label">
@@ -106,11 +112,12 @@ function RainMapForm() {
             className="form-control"
             id="endDate"
             value={formData.endDate}
-            onChange={(e) =>
-              setFormData({ ...formData, endDate: e.target.value })
-            }
+            onChange={(e) => handleFieldChange("endDate", e.target.value)}
             min={formData.startDate ? formData.startDate : ""}
           />
+          {errors.endDate && (
+            <div className="text-danger">{errors.endDate}</div>
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="endMoon" className="form-label">
@@ -120,9 +127,7 @@ function RainMapForm() {
             className="form-select"
             id="endMoon"
             value={formData.endMoon}
-            onChange={(e) =>
-              setFormData({ ...formData, endMoon: e.target.value })
-            }
+            onChange={(e) => handleFieldChange("endMoon", e.target.value)}
           >
             <option value="">Selecciona una fase lunar</option>
             {moonPhases.map((phase, idx) => (
@@ -131,6 +136,9 @@ function RainMapForm() {
               </option>
             ))}
           </select>
+          {errors.endMoon && (
+            <div className="text-danger">{errors.endMoon}</div>
+          )}
         </div>
       </fieldset>
     </form>

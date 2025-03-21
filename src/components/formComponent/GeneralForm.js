@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { FormDataContext } from "../../context/FormDataContext";
 
-function GeneralForm() {
-  const { formData, setFormData } = useContext(FormDataContext);
+function GeneralForm({ errors, handleFieldChange }) {
+  const { formData } = useContext(FormDataContext);
 
   return (
     <form>
@@ -17,11 +17,12 @@ function GeneralForm() {
             className="form-control"
             id="cityName"
             value={formData.cityName}
-            onChange={(e) =>
-              setFormData({ ...formData, cityName: e.target.value })
-            }
+            onChange={(e) => handleFieldChange("cityName", e.target.value)}
             placeholder="ej. Santa Rosa... "
           />
+          {errors.cityName && (
+            <div className="text-danger">{errors.cityName}</div>
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="emissionDate" className="form-label">
@@ -32,10 +33,11 @@ function GeneralForm() {
             className="form-control"
             id="emissionDate"
             value={formData.emissionDate}
-            onChange={(e) =>
-              setFormData({ ...formData, emissionDate: e.target.value })
-            }
+            onChange={(e) => handleFieldChange("emissionDate", e.target.value)}
           />
+          {errors.emissionDate && (
+            <div className="text-danger">{errors.emissionDate}</div>
+          )}
         </div>
       </fieldset>
     </form>

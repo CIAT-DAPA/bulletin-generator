@@ -14,7 +14,8 @@ export const FormDataProvider = ({ children }) => {
     startMoon: "",
     endDate: "",
     endMoon: "",
-    // Aquí puedes agregar campos para otros pasos en el futuro
+    // Datos para el step 3 (Lunar Calendar)
+    calendarMonth: "",
   });
 
   return (

@@ -5,14 +5,17 @@ import iccLogo from "../../assets/iccLogo.png";
 import magaLogo from "../../assets/magaLogo.png";
 import RainMapBulletin from "./RainMapBulletin";
 import { FormDataContext } from "../../context/FormDataContext";
+import LunarCalendarBulletin from "./LunarCalendarBulletin";
 
 function Bulletin({ currentStep, totalSteps }) {
   const { formData } = useContext(FormDataContext);
 
   const renderBulletinContent = () => {
-    // Supongamos que el paso 1 corresponde al "Mapa de lluvias"
     if (currentStep === 2) {
       return <RainMapBulletin />;
+    }
+    if (currentStep === 3) {
+      return <LunarCalendarBulletin />;
     }
     return <div className="p-3"></div>;
   };
