@@ -1,6 +1,6 @@
 .bulletin-container {
-  width: 380px;
-  height: 725px;
+  width: 360px;
+  height: 640px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -29,4 +29,20 @@
   padding: 5px 10px;
   color: #fff;
   background-color: #2f320d;
+}
+
+.bg-dark-transparent{
+  background-color: #2C282580;
+}
+
+.bg-comunitario{
+  background-color: #2C282580;
+}
+
+.bg-dark-transparent-content{
+  background-color: #6E91A31A;
+}
+
+.fs-7{
+  font-size: 14px;
 }
