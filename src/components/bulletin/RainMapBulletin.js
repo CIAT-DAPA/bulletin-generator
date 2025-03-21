@@ -25,7 +25,7 @@ function RainMapBulletin() {
   };
 
   return (
-    <div className="d-flex flex-column justify-content-around h-100 p-2">
+    <div className="d-flex flex-column justify-content-start h-100 p-2 gap-3">
       {/* Sección Superior */}
       <div className="text-center d-flex justify-content-around align-items-center bg-dark-transparent text-white rounded-1 px-4 py-2">
         <div>
@@ -57,7 +57,7 @@ function RainMapBulletin() {
               alt="Mapa de lluvias"
               className="img-fluid border"
               style={{
-                maxHeight: "230px",
+                height: "230px",
                 objectFit: "contain",
                 mixBlendMode: "darken",
               }}
@@ -80,16 +80,22 @@ function RainMapBulletin() {
           {/* Columna Inicio */}
           <div>
             <p className="fw-bold mb-1">
-              {formatDate(formData.startDate) || "-"}
+              {formatDate(formData.startDate) || "{fecha inicio}"}
             </p>
-            {formData.startMoon && moonPhaseImages[formData.startMoon] && (
+            {formData.startMoon && moonPhaseImages[formData.startMoon] ? (
               <img
                 src={moonPhaseImages[formData.startMoon]}
                 alt={formData.startMoon}
                 style={{ height: "40px" }}
               />
+            ) : (
+              <div className="border p-2">
+                <small>Por favor escoge una fase lunar</small>
+              </div>
             )}
-            <p className="mb-0">{formData.startMoon || ""}</p>
+            <p className="mb-0">
+              {formData.startMoon || "{fase lunar de inicio}"}
+            </p>
           </div>
 
           {/* Separador "y" */}
@@ -100,16 +106,20 @@ function RainMapBulletin() {
           {/* Columna Fin */}
           <div>
             <p className="fw-bold mb-1">
-              {formatDate(formData.endDate) || "-"}
+              {formatDate(formData.endDate) || "{fecha fin}"}
             </p>
-            {formData.endMoon && moonPhaseImages[formData.endMoon] && (
+            {formData.endMoon && moonPhaseImages[formData.endMoon] ? (
               <img
                 src={moonPhaseImages[formData.endMoon]}
                 alt={formData.endMoon}
                 style={{ height: "40px" }}
               />
+            ) : (
+              <div className="border p-2">
+                <small>Por favor escoge una fase lunar</small>
+              </div>
             )}
-            <p className="mb-0">{formData.endMoon || ""}</p>
+            <p className="mb-0">{formData.endMoon || "{fase lunar de fin}"}</p>
           </div>
         </div>
       </div>

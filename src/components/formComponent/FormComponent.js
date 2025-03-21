@@ -1,5 +1,6 @@
 import React from "react";
 import RainMapForm from "./RainMapForm";
+import GeneralForm from "./GeneralForm";
 
 function FormComponent({ currentStep, onStepChange, totalSteps }) {
   const handleNext = () => {
@@ -21,6 +22,8 @@ function FormComponent({ currentStep, onStepChange, totalSteps }) {
   const renderStepForm = () => {
     switch (currentStep) {
       case 1:
+        return <GeneralForm />;
+      case 2:
         return <RainMapForm />;
       // case 2: return <LunarCalendarForm />;
       default:
@@ -30,7 +33,7 @@ function FormComponent({ currentStep, onStepChange, totalSteps }) {
 
   return (
     <div>
-      <h3>Formulario - Sección {currentStep}</h3>
+      <h3>Formulario - Paso {currentStep}</h3>
       {renderStepForm()}
       <div className="d-flex justify-content-between mt-3">
         {currentStep > 1 && (

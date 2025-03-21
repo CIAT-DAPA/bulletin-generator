@@ -4,9 +4,11 @@ export const FormDataContext = createContext();
 
 export const FormDataProvider = ({ children }) => {
   const [formData, setFormData] = useState({
-    // Datos para el step 1 (Rain Map)
+    // Datos para el step 1 (General)
+    emissionDate: "",
+    cityName: "",
+    // Datos para el step 2 (Rain Map)
     rainSeason: "",
-    seasonYear: "",
     mapImage: null,
     startDate: "",
     startMoon: "",

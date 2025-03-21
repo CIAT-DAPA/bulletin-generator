@@ -40,21 +40,6 @@ function RainMapForm() {
             placeholder="ej. primera, segunda..."
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="seasonYear" className="form-label">
-            Año de la temporada
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            id="seasonYear"
-            value={formData.seasonYear}
-            onChange={(e) =>
-              setFormData({ ...formData, seasonYear: e.target.value })
-            }
-            placeholder="ej. 2025"
-          />
-        </div>
       </fieldset>
 
       {/* Group 2: Map */}
@@ -89,6 +74,7 @@ function RainMapForm() {
             onChange={(e) =>
               setFormData({ ...formData, startDate: e.target.value })
             }
+            max={formData.endDate ? formData.endDate : ""}
           />
         </div>
         <div className="mb-3">
@@ -123,6 +109,7 @@ function RainMapForm() {
             onChange={(e) =>
               setFormData({ ...formData, endDate: e.target.value })
             }
+            min={formData.startDate ? formData.startDate : ""}
           />
         </div>
         <div className="mb-3">

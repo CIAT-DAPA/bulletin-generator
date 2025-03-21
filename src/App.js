@@ -5,12 +5,13 @@ import Bulletin from "./components/bulletin/Bulletin";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import { FormDataProvider } from "./context/FormDataContext";
-import { FaCloudRain, FaMoon } from "react-icons/fa";
+import { FaCloudRain, FaMoon, FaAlignCenter } from "react-icons/fa";
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
 
   const steps = [
+    { label: "Detalles generales", icon: <FaAlignCenter /> },
     { label: "Mapa de lluvias", icon: <FaCloudRain /> },
     { label: "Calendario lunar", icon: <FaMoon /> },
   ];
@@ -38,7 +39,7 @@ function App() {
               />
             </div>
             <div className="col-md-6 d-flex justify-content-center">
-              <Bulletin currentStep={currentStep} />
+              <Bulletin currentStep={currentStep} totalSteps={steps.length}/>
             </div>
           </div>
         </div>
