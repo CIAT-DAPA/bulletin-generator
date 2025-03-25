@@ -1,0 +1,55 @@
+.lunar-calendar-container {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.lunar-calendar-table {
+  margin-bottom: 0;
+  border-color: #fff;
+}
+
+.lunar-calendar-table thead tr {
+  background-color: #1F2A31CC;
+}
+
+.lunar-calendar-table thead th {
+  border-color: #fff;
+  color: #fff;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 15px;
+  padding: 4px;
+}
+
+.lunar-calendar-table thead th:first-child {
+  background-color: #6B6B6B80;
+}
+
+.lunar-calendar-table td {
+  position: relative;
+  vertical-align: middle;
+  border-color: #fff;
+  width: 40px;
+  height: 50px;
+  padding: 0;
+}
+
+.lunar-calendar-day {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  font-size: 13px;
+}
+
+.lunar-calendar-moon {
+  max-height: 32px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.lunar-calendar-moon-name {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 2px;
+}

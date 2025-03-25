@@ -1,73 +1,148 @@
 import React, { useContext } from "react";
 import { FormDataContext } from "../../context/FormDataContext";
+import lunaNueva from "../../assets/lunaNueva.png";
+import cuartoCreciente from "../../assets/cuartoCreciente.png";
+import lunaLlena from "../../assets/lunaLlena.png";
+import cuartoMenguante from "../../assets/cuartoMenguante.png";
+import lluviaIco from "../../assets/lluviaIco.png";
+import calendarMoonIco from "../../assets/calendarMoonIco.png";
+import "./LunarCalendarBulletin.css";
 
 function LunarCalendarBulletin() {
   const { formData } = useContext(FormDataContext);
+  const calendarMonth = formData.calendarMonth;
 
-  // Supongamos que guardas el mes en "YYYY-MM"
-  const calendarMonth = formData.calendarMonth || "2025-03"; // Ejemplo
+  const moonImages = {
+    "Luna Nueva": lunaNueva,
+    "Cuarto Creciente": cuartoCreciente,
+    "Luna Llena": lunaLlena,
+    "Cuarto Menguante": cuartoMenguante,
+  };
 
-  const [yearStr, monthStr] = calendarMonth.split("-");
-  const yearNum = parseInt(yearStr, 10);
-  const monthNum = parseInt(monthStr, 10) - 1; // 0-based
+  const moonDisplayNames = {
+    "Luna Nueva": "Nueva",
+    "Luna Llena": "Llena",
+    "Cuarto Creciente": "Crec.",
+    "Cuarto Menguante": "Meng.",
+  };
 
-  // Fecha del primer día
-  const firstDay = new Date(yearNum, monthNum, 1);
-  // Día de la semana en que inicia (0=Dom, 1=Lun, ...)
-  const dayOfWeek = firstDay.getDay();
-  // Total de días del mes
-  const daysInMonth = new Date(yearNum, monthNum + 1, 0).getDate();
+  let rows = [];
+  let monthName = "";
+  if (calendarMonth) {
+    const [yearStr, monthStr] = calendarMonth.split("-");
+    const yearNum = parseInt(yearStr, 10);
+    const monthNum = parseInt(monthStr, 10) - 1;
 
-  // Array de días vacíos para el offset
-  const emptyCells = Array.from({ length: dayOfWeek }, () => null);
-  // Array de días reales
-  const dayCells = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-  // Unimos ambos
-  let allCells = [...emptyCells, ...dayCells];
+    const firstDay = new Date(yearNum, monthNum, 1);
+    const dayOfWeek = firstDay.getDay();
+    const daysInMonth = new Date(yearNum, monthNum + 1, 0).getDate();
 
-  // Para que siempre tengamos filas completas (7 celdas),
-  // rellenamos la última fila con celdas vacías si faltan
-  while (allCells.length % 7 !== 0) {
-    allCells.push(null);
+    const emptyCells = Array.from({ length: dayOfWeek }, () => null);
+    const dayCells = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+    let allCells = [...emptyCells, ...dayCells];
+
+    while (allCells.length % 7 !== 0) {
+      allCells.push(null);
+    }
+
+    for (let i = 0; i < allCells.length; i += 7) {
+      rows.push(allCells.slice(i, i + 7));
+    }
+
+    monthName = new Date(yearNum, monthNum, 1).toLocaleString("es-ES", {
+      month: "long",
+    });
   }
 
-  // Partimos en filas de 7 celdas
-  const rows = [];
-  for (let i = 0; i < allCells.length; i += 7) {
-    rows.push(allCells.slice(i, i + 7));
-  }
-
-  // Días de la semana (empezando en domingo)
   const weekDays = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
 
-  // Nombre del mes en español
-  const monthName = new Date(yearNum, monthNum, 1).toLocaleString("es-ES", {
-    month: "long",
-  });
-  const monthLabel =
-    monthName.charAt(0).toUpperCase() + monthName.slice(1) + " " + yearNum;
-
   return (
-    <div className="p-2">
-      <h5 className="text-center">{monthLabel}</h5>
-      <table className="table table-bordered text-center">
-        <thead>
-          <tr>
-            {weekDays.map((wd) => (
-              <th key={wd}>{wd}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {row.map((cell, cellIndex) => (
-                <td key={cellIndex}>{cell || ""}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="d-flex flex-column justify-content-start h-100 p-2 gap-3">
+      {/* Sección Superior */}
+      <div className="text-center d-flex justify-content-around align-items-center bg-dark-transparent text-white rounded-1 px-4 py-2">
+        <div>
+          <img src={lluviaIco} alt="Lluvia" style={{ height: "38px" }} />
+        </div>
+        <div>
+          <div className="bg-comunitario text-end rounded-1 px-1">
+            <span className="fs-7">El Boletín Comunitario</span>
+          </div>
+          <h4 className="m-0 fw-light">
+            <span className="fw-bold text-uppercase">
+              {formData.rainSeason || "{Temporada}"}
+            </span>{" "}
+            {"época de lluvias"}
+          </h4>
+        </div>
+      </div>
+
+      {/* Sección Calendario */}
+      <div className="text-center">
+        <div className="d-flex justify-content-center align-items-center bg-dark-transparent text-white rounded-1 gap-2 py-1">
+          <img
+            src={calendarMoonIco}
+            alt="calendario lunar"
+            style={{ height: "24px" }}
+          />
+          <span className="fw-normal">Calendario lunar</span>
+        </div>
+
+        <span className="text-center text-white text-uppercase my-2">
+          {calendarMonth ? `${monthName}` : ""}
+        </span>
+
+        <div className="lunar-calendar-container">
+          {calendarMonth ? (
+            <table className="table-bordered text-center lunar-calendar-table w-100">
+              <thead>
+                <tr>
+                  {weekDays.map((wd) => (
+                    <th key={wd}>{wd}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {row.map((cell, cellIndex) => {
+                      if (!cell) {
+                        return <td key={cellIndex}></td>;
+                      }
+                      const event = formData.events.find(
+                        (ev) => parseInt(ev.day, 10) === cell
+                      );
+                      return (
+                        <td key={cellIndex}>
+                          <div className="lunar-calendar-day fw-bold">
+                            {cell}
+                          </div>
+
+                          {event && (
+                            <>
+                              <img
+                                src={moonImages[event.moon]}
+                                alt={event.moon}
+                                className="lunar-calendar-moon"
+                              />
+                              <div className="lunar-calendar-moon-name">
+                                {moonDisplayNames[event.moon] || event.moon}
+                              </div>
+                            </>
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p className="text-white m-2">
+              Por favor ingrese mes del calendario
+            </p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

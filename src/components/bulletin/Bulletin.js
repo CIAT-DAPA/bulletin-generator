@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "./Bulletin.css";
-import backgroundSky from "../../assets/background.jpg";
+import bgDay from "../../assets/bgDay.png";
+import bgNight from "../../assets/bgNight.png";
 import iccLogo from "../../assets/iccLogo.png";
 import magaLogo from "../../assets/magaLogo.png";
 import RainMapBulletin from "./RainMapBulletin";
@@ -44,7 +45,8 @@ function Bulletin({ currentStep, totalSteps }) {
       <div
         className="bulletin-body"
         style={{
-          backgroundImage: `url(${backgroundSky})`,
+          backgroundImage:
+            currentStep === 3 ? `url(${bgNight})` : `url(${bgDay})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
