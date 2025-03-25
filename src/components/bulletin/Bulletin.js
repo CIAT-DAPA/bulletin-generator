@@ -22,17 +22,17 @@ function Bulletin({ currentStep, totalSteps }) {
   };
 
   const formatDate = (dateString) => {
-    if (!dateString) return "";
+    if (!dateString) return "Fecha no disponible";
     const date = new Date(dateString + "T00:00:00");
-    let month = date.toLocaleString("es-ES", { month: "short" });
-    month = month.replace(".", "");
+    let month = date
+      .toLocaleString("es-ES", { month: "short" })
+      .replace(".", "");
     month = month.charAt(0).toUpperCase() + month.slice(1);
-    const year = date.getFullYear();
-    return `${month}/${year}`;
+    return `${month}/${date.getFullYear()}`;
   };
 
   return (
-    <div className="bulletin-container">
+    <div className="bulletin-container" id="bulletinCapture">
       <div className="bulletin-header d-flex justify-content-between align-items-center">
         <div>
           <img src={iccLogo} alt="Logo ICC" style={{ height: "25px" }} />
@@ -58,7 +58,7 @@ function Bulletin({ currentStep, totalSteps }) {
           <strong>{formData.cityName || "{municipio}"}</strong>
         </div>
         <span>
-          {currentStep} de {totalSteps}
+          {currentStep-1} de {totalSteps-1}
         </span>
       </div>
     </div>

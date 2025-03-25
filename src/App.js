@@ -9,6 +9,7 @@ import { FaCloudRain, FaMoon, FaAlignCenter } from "react-icons/fa";
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [captureStep, setCaptureStep] = useState(null); // Estado para capturar boletín
 
   const steps = [
     { label: "Detalles generales", icon: <FaAlignCenter /> },
@@ -36,10 +37,14 @@ function App() {
                 currentStep={currentStep}
                 onStepChange={handleStepChange}
                 totalSteps={steps.length}
+                setCaptureStep={setCaptureStep}
               />
             </div>
             <div className="col-md-6 d-flex justify-content-center">
-              <Bulletin currentStep={currentStep} totalSteps={steps.length}/>
+              <Bulletin
+                currentStep={captureStep ?? currentStep}
+                totalSteps={steps.length}
+              />
             </div>
           </div>
         </div>

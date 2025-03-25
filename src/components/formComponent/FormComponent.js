@@ -3,10 +3,19 @@ import RainMapForm from "./RainMapForm";
 import GeneralForm from "./GeneralForm";
 import { FormDataContext } from "../../context/FormDataContext";
 import LunarCalendarForm from "./LunarCalendarForm";
+import html2canvas from "html2canvas";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 
-function FormComponent({ currentStep, onStepChange, totalSteps }) {
+function FormComponent({
+  currentStep,
+  onStepChange,
+  totalSteps,
+  setCaptureStep,
+}) {
   const { formData, setFormData } = useContext(FormDataContext);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleFieldChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
@@ -21,14 +30,12 @@ function FormComponent({ currentStep, onStepChange, totalSteps }) {
 
   const validateStep = () => {
     let stepErrors = {};
-    // Para el paso 1 (General), se requieren ciertos campos:
     if (currentStep === 1) {
       if (!formData.cityName || formData.cityName.trim() === "")
         stepErrors.cityName = "Este campo es obligatorio.";
       if (!formData.emissionDate)
         stepErrors.emissionDate = "Este campo es obligatorio.";
     }
-    // Para el paso 2 (Rain Map), se requieren ciertos campos:
     if (currentStep === 2) {
       if (!formData.rainSeason || formData.rainSeason.trim() === "")
         stepErrors.rainSeason = "Este campo es obligatorio.";
@@ -41,17 +48,22 @@ function FormComponent({ currentStep, onStepChange, totalSteps }) {
       if (!formData.endDate) stepErrors.endDate = "Este campo es obligatorio.";
       if (!formData.endMoon) stepErrors.endMoon = "Selecciona una fase lunar.";
     }
-
-    setErrors(stepErrors);
-
-    if (currentStep === totalSteps) {
-      return alert("Formulario completo");
+    if (currentStep === 3) {
+      if (!formData.calendarMonth)
+        stepErrors.calendarMonth = "Este campo es obligatorio.";
     }
 
+    setErrors(stepErrors);
     return Object.keys(stepErrors).length === 0;
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    if (currentStep === totalSteps) {
+      if (!validateStep()) return;
+      await handleFinish();
+      return;
+    }
+
     if (validateStep()) {
       onStepChange(currentStep + 1);
       setErrors({});
@@ -61,6 +73,41 @@ function FormComponent({ currentStep, onStepChange, totalSteps }) {
   const handlePrev = () => {
     onStepChange(currentStep - 1);
     setErrors({});
+  };
+
+  const changeBulletinStep = (step) => {
+    return new Promise((resolve) => {
+      setCaptureStep(step);
+      resolve();
+    });
+  };
+
+  const handleFinish = async () => {
+    setLoading(true);
+    try {
+      const zip = new JSZip();
+      for (let step = 2; step <= totalSteps; step++) {
+        await changeBulletinStep(step);
+        await new Promise((r) => setTimeout(r, 300)); // Esperamos para que el DOM se actualice
+
+        const bulletinElement = document.getElementById("bulletinCapture");
+        if (!bulletinElement) continue;
+
+        const canvas = await html2canvas(bulletinElement);
+        const dataURL = canvas.toDataURL("image/png");
+        const imgData = dataURL.split("base64,")[1];
+
+        zip.file(`Boletin_Paso_${step - 1}.png`, imgData, { base64: true });
+      }
+
+      const content = await zip.generateAsync({ type: "blob" });
+      saveAs(content, "boletines.zip");
+      setCaptureStep(null); // Restauramos el estado después de la captura
+    } catch (err) {
+      console.error("Error generando ZIP:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const renderStepForm = () => {
@@ -103,6 +150,24 @@ function FormComponent({ currentStep, onStepChange, totalSteps }) {
           {currentStep < totalSteps ? "Siguiente" : "Finalizar"}
         </button>
       </div>
+      {loading && (
+        <div
+          className="modal show d-block"
+          tabIndex="-1"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-body text-center d-flex align-items-center justify-content-center gap-3">
+                <div className="spinner-border text-primary" role="status">
+                  <span className="visually-hidden">Cargando...</span>
+                </div>
+                <p className="mt-3">Generando boletín...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
