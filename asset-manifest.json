@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.ab1af5c7.css",
-    "main.js": "/static/js/main.1ea4d609.js",
-    "static/media/bgDay.png": "/static/media/bgDay.b66726fa7762834ab3b4.png",
-    "static/media/bgNight.png": "/static/media/bgNight.41ab750b2ef8eb4e8f1d.png",
-    "static/media/logoAgriLac.png": "/static/media/logoAgriLac.ebd72be4bb4085881352.png",
-    "static/media/logoMaga.png": "/static/media/logoMaga.e946269d38b34cf6e1ea.png",
-    "index.html": "/index.html",
-    "main.ab1af5c7.css.map": "/static/css/main.ab1af5c7.css.map",
-    "main.1ea4d609.js.map": "/static/js/main.1ea4d609.js.map"
+    "main.css": "/bulletin-generator/static/css/main.ab1af5c7.css",
+    "main.js": "/bulletin-generator/static/js/main.d3920bff.js",
+    "static/media/bgDay.png": "/bulletin-generator/static/media/bgDay.b66726fa7762834ab3b4.png",
+    "static/media/bgNight.png": "/bulletin-generator/static/media/bgNight.41ab750b2ef8eb4e8f1d.png",
+    "static/media/logoAgriLac.png": "/bulletin-generator/static/media/logoAgriLac.ebd72be4bb4085881352.png",
+    "static/media/logoMaga.png": "/bulletin-generator/static/media/logoMaga.e946269d38b34cf6e1ea.png",
+    "index.html": "/bulletin-generator/index.html",
+    "main.ab1af5c7.css.map": "/bulletin-generator/static/css/main.ab1af5c7.css.map",
+    "main.d3920bff.js.map": "/bulletin-generator/static/js/main.d3920bff.js.map"
   },
   "entrypoints": [
     "static/css/main.ab1af5c7.css",
-    "static/js/main.1ea4d609.js"
+    "static/js/main.d3920bff.js"
   ]
 }
