@@ -2,7 +2,12 @@ import React from "react";
 import { FaCheck } from "react-icons/fa";
 import "./StepsProgressBar.css";
 
-function StepsProgressBar({ steps, currentStep, onStepChange }) {
+function StepsProgressBar({
+  steps,
+  currentStep,
+  onStepChange,
+  isCurrentStepComplete,
+}) {
   return (
     <div className="steps-container">
       <div className="steps-wrapper">
@@ -15,7 +20,13 @@ function StepsProgressBar({ steps, currentStep, onStepChange }) {
             <div
               className="step-item"
               key={index}
-              onClick={() => onStepChange(stepNumber)}
+              onClick={() => {
+                if (stepNumber <= currentStep) {
+                  onStepChange(stepNumber);
+                } else if (isCurrentStepComplete) {
+                  onStepChange(stepNumber);
+                }
+              }}
               style={{ cursor: "pointer" }}
             >
               {index < steps.length - 1 && <div className="step-line" />}

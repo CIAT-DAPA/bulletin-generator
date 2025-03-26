@@ -1,4 +1,7 @@
 import React from "react";
+import iccLogo from "../../assets/logoIcc.jpg";
+import agrilacLogo from "../../assets/logoAgriLac.png";
+import magaLogo from "../../assets/logoMaga.png";
 
 function Footer() {
   return (
@@ -6,26 +9,24 @@ function Footer() {
       <div className="container text-center">
         <h5>Socios del Proyecto</h5>
         <div className="d-flex justify-content-center align-items-center flex-wrap">
-          {/* Ejemplo de logos. Reemplaza 'logo1.png', etc., por la ruta real de tus imágenes */}
           <img
-            src="logo1.png"
-            alt="Logo Socio 1"
+            src={iccLogo}
+            alt="ICC"
             className="m-2"
             style={{ maxWidth: "100px" }}
           />
           <img
-            src="logo2.png"
-            alt="Logo Socio 2"
+            src={magaLogo}
+            alt="MAGA"
             className="m-2"
             style={{ maxWidth: "100px" }}
           />
           <img
-            src="logo3.png"
-            alt="Logo Socio 3"
+            src={agrilacLogo}
+            alt="AgriLac"
             className="m-2"
             style={{ maxWidth: "100px" }}
           />
-          {/* Agrega más logos según sea necesario */}
         </div>
       </div>
     </footer>

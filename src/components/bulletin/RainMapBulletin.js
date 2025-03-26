@@ -59,7 +59,6 @@ function RainMapBulletin() {
               style={{
                 height: "230px",
                 objectFit: "contain",
-                mixBlendMode: "darken",
               }}
             />
           ) : (

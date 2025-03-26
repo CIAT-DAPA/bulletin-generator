@@ -9,7 +9,8 @@ import { FaCloudRain, FaMoon, FaAlignCenter } from "react-icons/fa";
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [captureStep, setCaptureStep] = useState(null); // Estado para capturar boletín
+  const [captureStep, setCaptureStep] = useState(null);
+  const [isCurrentStepComplete, setIsCurrentStepComplete] = useState(false);
 
   const steps = [
     { label: "Detalles generales", icon: <FaAlignCenter /> },
@@ -17,7 +18,14 @@ function App() {
     { label: "Calendario lunar", icon: <FaMoon /> },
   ];
 
+  const handleStepComplete = (complete) => {
+    setIsCurrentStepComplete(complete);
+  };
+
   const handleStepChange = (step) => {
+    if (step > currentStep && !isCurrentStepComplete) {
+      return;
+    }
     setCurrentStep(step);
   };
 
@@ -30,6 +38,7 @@ function App() {
             steps={steps}
             currentStep={currentStep}
             onStepChange={handleStepChange}
+            isCurrentStepComplete={isCurrentStepComplete}
           />
           <div className="row mt-4">
             <div className="col-md-6">
@@ -38,6 +47,7 @@ function App() {
                 onStepChange={handleStepChange}
                 totalSteps={steps.length}
                 setCaptureStep={setCaptureStep}
+                onStepComplete={handleStepComplete}
               />
             </div>
             <div className="col-md-6 d-flex justify-content-center">
