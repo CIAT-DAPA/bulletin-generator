@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { FormDataContext } from "../../context/FormDataContext";
+import Services from "../../services/Services";
 
 function LunarCalendarForm({ errors, handleFieldChange }) {
   const { formData, setFormData } = useContext(FormDataContext);
@@ -74,6 +75,47 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
     });
   };
 
+  const handleMonthChange = (e) => {
+    const newMonth = e.target.value;
+    setFormData((prev) => ({
+      ...prev,
+      calendarMonth: newMonth,
+      events: [],
+    }));
+    Services.get_phase_moon_by_month(e.target.value).then((response) => {
+      const mappedEvents = response.map((item) => {
+        const day = parseInt(item.date.split("-")[2], 10);
+        let moon;
+        switch (item.phase) {
+          case "New Moon":
+            moon = "Luna Nueva";
+            break;
+          case "Full Moon":
+            moon = "Luna Llena";
+            break;
+          case "1st Quarter":
+            moon = "Cuarto Creciente";
+            break;
+          case "3rd Quarter":
+            moon = "Cuarto Menguante";
+            break;
+          default:
+            moon = item.phase;
+            break;
+        }
+
+        return {
+          day,
+          moon,
+        };
+      });
+      setFormData((prev) => ({
+        ...prev,
+        events: [...prev.events, ...mappedEvents],
+      }));
+    });
+  };
+
   return (
     <form>
       <fieldset>
@@ -87,7 +129,7 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
             className="form-control"
             id="calendarMonth"
             value={formData.calendarMonth || ""}
-            onChange={(e) => handleFieldChange("calendarMonth", e.target.value)}
+            onChange={(e) => handleMonthChange(e)}
           />
           {errors?.calendarMonth && (
             <div className="text-danger">{errors.calendarMonth}</div>
@@ -149,7 +191,7 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
           {formData.events.length === 0 ? (
             <p className="text-muted">No hay eventos</p>
           ) : (
-            <ul className="list-group">
+            <ul className="list-group overflow-auto" style={{ maxHeight: "280px" }}>
               {formData.events.map((ev, index) => (
                 <li
                   key={index}
