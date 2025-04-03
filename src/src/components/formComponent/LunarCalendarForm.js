@@ -81,6 +81,7 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
       ...prev,
       calendarMonth: newMonth,
       events: [],
+      loadingMoons: true,
     }));
     Services.get_phase_moon_by_month(e.target.value).then((response) => {
       const mappedEvents = response.map((item) => {
@@ -99,6 +100,21 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
           case "3rd Quarter":
             moon = "Cuarto Menguante";
             break;
+          case "Waxing Crescent":
+            moon = "Creciente";
+            break;
+          case "Waxing Gibbous":
+            moon = "Gibosa Creciente";
+            break;
+          case "Waning Gibbous":
+            moon = "Gibosa Menguante";
+            break;
+          case "Waning Crescent":
+            moon = "Menguante";
+            break;
+          case "Dark Moon":
+            moon = "Luna Nueva";
+            break;
           default:
             moon = item.phase;
             break;
@@ -112,6 +128,7 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
       setFormData((prev) => ({
         ...prev,
         events: [...prev.events, ...mappedEvents],
+        loadingMoons: false,
       }));
     });
   };
@@ -191,7 +208,10 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
           {formData.events.length === 0 ? (
             <p className="text-muted">No hay eventos</p>
           ) : (
-            <ul className="list-group overflow-auto" style={{ maxHeight: "280px" }}>
+            <ul
+              className="list-group overflow-auto"
+              style={{ maxHeight: "280px" }}
+            >
               {formData.events.map((ev, index) => (
                 <li
                   key={index}

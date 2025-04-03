@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import { FormDataContext } from "../../context/FormDataContext";
 import lunaNueva from "../../assets/lunaNueva.png";
+import creciente from "../../assets/creciente.png";
 import cuartoCreciente from "../../assets/cuartoCreciente.png";
+import gibosaCreciente from "../../assets/gibosaCreciente.png";
 import lunaLlena from "../../assets/lunaLlena.png";
+import gibosaMenguante from "../../assets/gibosaMenguante.png";
 import cuartoMenguante from "../../assets/cuartoMenguante.png";
+import menguante from "../../assets/menguante.png";
 import lluviaIco from "../../assets/lluviaIco.png";
 import calendarMoonIco from "../../assets/calendarMoonIco.png";
 import "./LunarCalendarBulletin.css";
@@ -11,12 +15,17 @@ import "./LunarCalendarBulletin.css";
 function LunarCalendarBulletin() {
   const { formData } = useContext(FormDataContext);
   const calendarMonth = formData.calendarMonth;
+  const isLoading = formData.loadingMoons;
 
   const moonImages = {
     "Luna Nueva": lunaNueva,
+    Creciente: creciente,
     "Cuarto Creciente": cuartoCreciente,
+    "Gibosa Creciente": gibosaCreciente,
     "Luna Llena": lunaLlena,
+    "Gibosa Menguante": gibosaMenguante,
     "Cuarto Menguante": cuartoMenguante,
+    Menguante: menguante,
   };
 
   const moonDisplayNames = {
@@ -57,7 +66,7 @@ function LunarCalendarBulletin() {
   const weekDays = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
 
   return (
-    <div className="d-flex flex-column justify-content-start h-100 p-2 gap-3">
+    <div className="d-flex flex-column justify-content-start h-100 p-2 gap-0">
       {/* Sección Superior */}
       <div className="text-center d-flex justify-content-around align-items-center bg-dark-transparent text-white rounded-1 px-4 py-2">
         <div>
@@ -93,49 +102,57 @@ function LunarCalendarBulletin() {
 
         <div className="lunar-calendar-container">
           {calendarMonth ? (
-            <table className="table-bordered text-center lunar-calendar-table w-100">
-              <thead>
-                <tr>
-                  {weekDays.map((wd) => (
-                    <th key={wd}>{wd}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((row, rowIndex) => (
-                  <tr key={rowIndex}>
-                    {row.map((cell, cellIndex) => {
-                      if (!cell) {
-                        return <td key={cellIndex}></td>;
-                      }
-                      const event = formData.events.find(
-                        (ev) => parseInt(ev.day, 10) === cell
-                      );
-                      return (
-                        <td key={cellIndex}>
-                          <div className="lunar-calendar-day fw-bold">
-                            {cell}
-                          </div>
-
-                          {event && (
-                            <>
-                              <img
-                                src={moonImages[event.moon]}
-                                alt={event.moon}
-                                className="lunar-calendar-moon"
-                              />
-                              <div className="lunar-calendar-moon-name">
-                                {moonDisplayNames[event.moon] || event.moon}
-                              </div>
-                            </>
-                          )}
-                        </td>
-                      );
-                    })}
+            isLoading ? (
+              <div className="d-flex justify-content-center align-items-center h-100">
+                <div class="spinner-border" style={{height:"20px", width:"20px"}} role="status"></div>
+                <p className="text-white m-2">Cargando fases lunares...</p>
+              </div>
+            ) : (
+              <table className="table-bordered text-center lunar-calendar-table w-100">
+                <thead>
+                  <tr>
+                    {weekDays.map((wd) => (
+                      <th key={wd}>{wd}</th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {rows.map((row, rowIndex) => (
+                    <tr key={rowIndex}>
+                      {row.map((cell, cellIndex) => {
+                        if (!cell) {
+                          return <td key={cellIndex}></td>;
+                        }
+                        const event = formData.events.find(
+                          (ev) => parseInt(ev.day, 10) === cell
+                        );
+                        return (
+                          <td key={cellIndex} style={{ height: "74px" }}>
+                            <div className="d-flex flex-column align-items-center justify-content-evenly">
+                              <div className="lunar-calendar-day fw-bold w-100 text-start ps-1">
+                                {cell}
+                              </div>
+                              {event && (
+                                <>
+                                  <img
+                                    src={moonImages[event.moon]}
+                                    alt={event.moon}
+                                    className="lunar-calendar-moon"
+                                  />
+                                  <div className="lunar-calendar-moon-name">
+                                    {moonDisplayNames[event.moon] || "‎"}
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )
           ) : (
             <p className="text-white m-2">
               Por favor ingrese mes del calendario
