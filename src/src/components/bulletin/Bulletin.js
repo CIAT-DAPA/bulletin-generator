@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./Bulletin.css";
-import bgDay from "../../assets/bgDay.png";
-import bgNight from "../../assets/bgNight.png";
+import bgDay from "../../assets/bgDay.jpg";
+import bgNight from "../../assets/bgNight.jpg";
 import iccLogo from "../../assets/iccLogo.png";
 import magaLogo from "../../assets/magaLogo.png";
 import RainMapBulletin from "./RainMapBulletin";

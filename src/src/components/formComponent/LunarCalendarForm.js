@@ -5,75 +5,75 @@ import Services from "../../services/Services";
 function LunarCalendarForm({ errors, handleFieldChange }) {
   const { formData, setFormData } = useContext(FormDataContext);
 
-  const [tempDay, setTempDay] = useState("");
-  const [tempMoon, setTempMoon] = useState("");
+  // const [tempDay, setTempDay] = useState("");
+  // const [tempMoon, setTempMoon] = useState("");
 
-  const [dayError, setDayError] = useState("");
-  const [moonError, setMoonError] = useState("");
+  // const [dayError, setDayError] = useState("");
+  // const [moonError, setMoonError] = useState("");
 
-  const moonPhases = [
-    "Luna Nueva",
-    "Cuarto Creciente",
-    "Luna Llena",
-    "Cuarto Menguante",
-  ];
+  // const moonPhases = [
+  //   "Luna Nueva",
+  //   "Cuarto Creciente",
+  //   "Luna Llena",
+  //   "Cuarto Menguante",
+  // ];
 
-  const handleDayChange = (e) => {
-    setTempDay(e.target.value);
-    if (dayError) {
-      setDayError("");
-    }
-  };
+  // const handleDayChange = (e) => {
+  //   setTempDay(e.target.value);
+  //   if (dayError) {
+  //     setDayError("");
+  //   }
+  // };
 
-  const handleMoonChange = (e) => {
-    setTempMoon(e.target.value);
-    if (moonError) {
-      setMoonError("");
-    }
-  };
+  // const handleMoonChange = (e) => {
+  //   setTempMoon(e.target.value);
+  //   if (moonError) {
+  //     setMoonError("");
+  //   }
+  // };
 
-  const handleAddEvent = () => {
-    let hasError = false;
+  // const handleAddEvent = () => {
+  //   let hasError = false;
 
-    if (!tempDay) {
-      setDayError("Debes indicar el día.");
-      hasError = true;
-    }
-    if (!tempMoon) {
-      setMoonError("Selecciona una fase lunar.");
-      hasError = true;
-    }
+  //   if (!tempDay) {
+  //     setDayError("Debes indicar el día.");
+  //     hasError = true;
+  //   }
+  //   if (!tempMoon) {
+  //     setMoonError("Selecciona una fase lunar.");
+  //     hasError = true;
+  //   }
 
-    const duplicateEvent = formData.events.find(
-      (ev) => parseInt(ev.day, 10) === parseInt(tempDay, 10)
-    );
-    if (duplicateEvent) {
-      setDayError("Ya existe un evento para este día.");
-      hasError = true;
-    }
+  //   const duplicateEvent = formData.events.find(
+  //     (ev) => parseInt(ev.day, 10) === parseInt(tempDay, 10)
+  //   );
+  //   if (duplicateEvent) {
+  //     setDayError("Ya existe un evento para este día.");
+  //     hasError = true;
+  //   }
 
-    if (hasError) return;
+  //   if (hasError) return;
 
-    const newEvent = {
-      day: tempDay,
-      moon: tempMoon,
-    };
-    setFormData({
-      ...formData,
-      events: [...formData.events, newEvent],
-    });
-    setTempDay("");
-    setTempMoon("");
-  };
+  //   const newEvent = {
+  //     day: tempDay,
+  //     moon: tempMoon,
+  //   };
+  //   setFormData({
+  //     ...formData,
+  //     events: [...formData.events, newEvent],
+  //   });
+  //   setTempDay("");
+  //   setTempMoon("");
+  // };
 
-  const handleRemoveEvent = (index) => {
-    const newEvents = [...formData.events];
-    newEvents.splice(index, 1);
-    setFormData({
-      ...formData,
-      events: newEvents,
-    });
-  };
+  // const handleRemoveEvent = (index) => {
+  //   const newEvents = [...formData.events];
+  //   newEvents.splice(index, 1);
+  //   setFormData({
+  //     ...formData,
+  //     events: newEvents,
+  //   });
+  // };
 
   const handleMonthChange = (e) => {
     const newMonth = e.target.value;
@@ -153,7 +153,7 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
           )}
         </div>
       </fieldset>
-
+      {/* 
       <fieldset>
         <legend>Eventos</legend>
         <div className="row g-2 align-items-end">
@@ -202,8 +202,7 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
             </button>
           </div>
         </div>
-
-        {/* Lista de eventos */}
+        
         <div className="mt-3">
           {formData.events.length === 0 ? (
             <p className="text-muted">No hay eventos</p>
@@ -233,7 +232,8 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
             </ul>
           )}
         </div>
-      </fieldset>
+      </fieldset> 
+    */}
     </form>
   );
 }
