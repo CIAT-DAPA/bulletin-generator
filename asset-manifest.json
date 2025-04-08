@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/bulletin-generator/static/css/main.ee8c44db.css",
-    "main.js": "/bulletin-generator/static/js/main.f183887b.js",
-    "static/media/bgDay.png": "/bulletin-generator/static/media/bgDay.b66726fa7762834ab3b4.png",
-    "static/media/bgNight.png": "/bulletin-generator/static/media/bgNight.41ab750b2ef8eb4e8f1d.png",
+    "main.js": "/bulletin-generator/static/js/main.a72e55f3.js",
     "static/media/logoAgriLac.png": "/bulletin-generator/static/media/logoAgriLac.ebd72be4bb4085881352.png",
     "static/media/logoMaga.png": "/bulletin-generator/static/media/logoMaga.e946269d38b34cf6e1ea.png",
+    "static/media/bgDay.jpg": "/bulletin-generator/static/media/bgDay.cd9d2f5cc6c3195d2d09.jpg",
+    "static/media/bgNight.jpg": "/bulletin-generator/static/media/bgNight.389e6c60d3ef9556b8c9.jpg",
     "index.html": "/bulletin-generator/index.html",
     "main.ee8c44db.css.map": "/bulletin-generator/static/css/main.ee8c44db.css.map",
-    "main.f183887b.js.map": "/bulletin-generator/static/js/main.f183887b.js.map"
+    "main.a72e55f3.js.map": "/bulletin-generator/static/js/main.a72e55f3.js.map"
   },
   "entrypoints": [
     "static/css/main.ee8c44db.css",
-    "static/js/main.f183887b.js"
+    "static/js/main.a72e55f3.js"
   ]
 }
