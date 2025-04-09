@@ -5,7 +5,12 @@ import Bulletin from "./components/bulletin/Bulletin";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import { FormDataProvider } from "./context/FormDataContext";
-import { FaCloudRain, FaMoon, FaAlignCenter } from "react-icons/fa";
+import {
+  FaCloudRain,
+  FaMoon,
+  FaAlignCenter,
+  FaClipboardList,
+} from "react-icons/fa";
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -16,6 +21,7 @@ function App() {
     { label: "Detalles generales", icon: <FaAlignCenter /> },
     { label: "Mapa de lluvias", icon: <FaCloudRain /> },
     { label: "Calendario lunar", icon: <FaMoon /> },
+    { label: "Recomendaciones", icon: <FaClipboardList /> },
   ];
 
   const handleStepComplete = (complete) => {

@@ -6,6 +6,7 @@ import { FormDataContext } from "../../context/FormDataContext";
 import html2canvas from "html2canvas";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import RecommendationForm from "./RecommendationForm";
 
 function FormComponent({
   currentStep,
@@ -52,6 +53,10 @@ function FormComponent({
     if (currentStep === 3) {
       if (!formData.calendarMonth)
         stepErrors.calendarMonth = "Este campo es obligatorio.";
+    }
+    if (currentStep === 4) {
+      if (!formData.recommendations.length)
+        stepErrors.recommendations = "Debes agregar recomendaciones.";
     }
 
     setErrors(stepErrors);
@@ -120,6 +125,13 @@ function FormComponent({
       case 3:
         return (
           <LunarCalendarForm
+            errors={errors}
+            handleFieldChange={handleFieldChange}
+          />
+        );
+      case 4:
+        return (
+          <RecommendationForm
             errors={errors}
             handleFieldChange={handleFieldChange}
           />

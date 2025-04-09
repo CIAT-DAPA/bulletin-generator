@@ -18,6 +18,8 @@ export const FormDataProvider = ({ children }) => {
     calendarMonth: "",
     events: [],
     loadingMoons: false,
+    // Datos para el step 4 (Recommendations)
+    recommendations: [],
   });
 
   return (

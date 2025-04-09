@@ -7,6 +7,7 @@ import magaLogo from "../../assets/magaLogo.png";
 import RainMapBulletin from "./RainMapBulletin";
 import { FormDataContext } from "../../context/FormDataContext";
 import LunarCalendarBulletin from "./LunarCalendarBulletin";
+import RecommendationBulletin from "./RecommendationBulletin";
 
 function Bulletin({ currentStep, totalSteps }) {
   const { formData } = useContext(FormDataContext);
@@ -17,6 +18,9 @@ function Bulletin({ currentStep, totalSteps }) {
     }
     if (currentStep === 3) {
       return <LunarCalendarBulletin />;
+    }
+    if (currentStep === 4) {
+      return <RecommendationBulletin />;
     }
     return <div className="p-3"></div>;
   };
