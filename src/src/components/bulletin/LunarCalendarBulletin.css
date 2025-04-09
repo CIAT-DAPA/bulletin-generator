@@ -32,31 +32,34 @@
   border-left: 1px #fff solid !important;
 }
 
-/* .lunar-calendar-table td {
-  position: relative;
-  vertical-align: middle;
-  border-color: #fff;
-  width: 40px;
-  height: 50px;
-  padding: 0;
-} */
-
-.lunar-calendar-day {
-  /* position: absolute;
-  top: 2px;
-  left: 2px; */
+tbody.max-five-rows .lunar-calendar-day {
   font-size: 13px;
+}
+
+tbody.many-rows .lunar-calendar-day {
+  font-size: 13px;
+  height: 15px;
 }
 
 .lunar-calendar-moon {
   height: 32px;
-  /* display: block;
-  margin: 0 auto;
-  margin-top: 20px; */
 }
 
 .lunar-calendar-moon-name {
-  font-size: 12px;
   text-align: center;
-  /* margin-top: 2px; */
+}
+
+tbody.max-five-rows .lunar-calendar-moon-name {
+  font-size: 13px;
+}
+tbody.many-rows .lunar-calendar-moon-name {
+  font-size: 13px;
+  height: 15px;
+}
+
+tbody.max-five-rows tr {
+  height: 74px;
+}
+tbody.many-rows tr {
+  height: 60px;
 }

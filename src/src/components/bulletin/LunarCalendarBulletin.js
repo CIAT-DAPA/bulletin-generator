@@ -63,6 +63,8 @@ function LunarCalendarBulletin() {
     });
   }
 
+  const tbodyClass = rows.length > 5 ? "many-rows" : "max-five-rows";
+
   const weekDays = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
 
   return (
@@ -104,7 +106,11 @@ function LunarCalendarBulletin() {
           {calendarMonth ? (
             isLoading ? (
               <div className="d-flex justify-content-center align-items-center h-100">
-                <div class="spinner-border" style={{height:"20px", width:"20px"}} role="status"></div>
+                <div
+                  class="spinner-border"
+                  style={{ height: "20px", width: "20px" }}
+                  role="status"
+                ></div>
                 <p className="text-white m-2">Cargando fases lunares...</p>
               </div>
             ) : (
@@ -116,7 +122,7 @@ function LunarCalendarBulletin() {
                     ))}
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className={tbodyClass}>
                   {rows.map((row, rowIndex) => (
                     <tr key={rowIndex}>
                       {row.map((cell, cellIndex) => {
@@ -127,7 +133,7 @@ function LunarCalendarBulletin() {
                           (ev) => parseInt(ev.day, 10) === cell
                         );
                         return (
-                          <td key={cellIndex} style={{ height: "74px" }}>
+                          <td key={cellIndex}>
                             <div className="d-flex flex-column align-items-center justify-content-evenly">
                               <div className="lunar-calendar-day fw-bold w-100 text-start ps-1">
                                 {cell}

@@ -30,7 +30,7 @@ function GeneralForm({ errors, handleFieldChange }) {
           </label>
           <input
             type="date"
-            className="form-control"
+            className="form-control w-auto"
             id="emissionDate"
             value={formData.emissionDate}
             onChange={(e) => handleFieldChange("emissionDate", e.target.value)}

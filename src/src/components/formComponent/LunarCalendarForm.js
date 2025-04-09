@@ -143,7 +143,7 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
           </label>
           <input
             type="month"
-            className="form-control"
+            className="form-control w-auto"
             id="calendarMonth"
             value={formData.calendarMonth || ""}
             onChange={(e) => handleMonthChange(e)}
