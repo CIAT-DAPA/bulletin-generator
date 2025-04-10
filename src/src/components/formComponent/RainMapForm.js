@@ -21,7 +21,7 @@ function RainMapForm({ errors, handleFieldChange }) {
   };
 
   return (
-    <form>
+    <>
       {/* Group 1: Title */}
       <fieldset className="mb-4">
         <legend>Titulo</legend>
@@ -157,7 +157,7 @@ function RainMapForm({ errors, handleFieldChange }) {
           </div>
         </div>
       </fieldset>
-    </form>
+    </>
   );
 }
 

@@ -134,7 +134,7 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
   };
 
   return (
-    <form>
+    <>
       <fieldset>
         <legend>Calendario Lunar</legend>
         <div className="mb-3">
@@ -234,7 +234,7 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
         </div>
       </fieldset> 
     */}
-    </form>
+    </>
   );
 }
 

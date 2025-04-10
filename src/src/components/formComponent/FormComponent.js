@@ -146,7 +146,12 @@ function FormComponent({
   }, [formData, currentStep]);
 
   return (
-    <div>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleNext();
+      }}
+    >
       <h3>Formulario - Paso {currentStep}</h3>
       {renderStepForm()}
       <div className="d-flex justify-content-between mt-3">
@@ -159,7 +164,7 @@ function FormComponent({
             Anterior
           </button>
         )}
-        <button type="button" className="btn btn-primary" onClick={handleNext}>
+        <button type="submit" className="btn btn-primary">
           {currentStep < totalSteps ? "Siguiente" : "Finalizar"}
         </button>
       </div>
@@ -181,7 +186,7 @@ function FormComponent({
           </div>
         </div>
       )}
-    </div>
+    </form>
   );
 }
 

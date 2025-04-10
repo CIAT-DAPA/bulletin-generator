@@ -3,6 +3,7 @@ import { FormDataContext } from "../../context/FormDataContext";
 import lluviaIco from "../../assets/lluviaIco.png";
 import recommendationIco from "../../assets/recommendationIco.png";
 import familyImg from "../../assets/family.png";
+import "./RecommendationBulletin.css";
 
 function RecommendationBulletin() {
   const { formData } = useContext(FormDataContext);
@@ -30,29 +31,24 @@ function RecommendationBulletin() {
         <div className="d-flex justify-content-center align-items-center bg-dark-transparent text-white rounded-1 gap-2 py-1">
           <img
             src={recommendationIco}
-            alt="Lluvia"
+            alt="Recomendaciones"
             style={{ height: "24px" }}
           />
           <span className="fw-normal">Recomendaciones</span>
         </div>
-        <img src={familyImg} alt="Familia" className="img-fluid" />
-        <div className="d-flex justify-content-around align-items-center bg-dark-transparent-content rounded-1">
-          <ul>
-            {formData.recommendations.length === 0 ? (
-              <p className="text-muted">No hay recomendaciones</p>
-            ) : (
-              formData.recommendations.map((rec, index) => (
-                <li
-                  key={index}
-                  className="list-group-item d-flex justify-content-between align-items-center"
-                >
-                  <span>
-                    <strong>Recomendación:</strong> {rec.recommendation}
-                  </span>
-                </li>
-              ))
-            )}
-          </ul>
+
+        <img src={familyImg} alt="Familia" className="img-fluid mt-2" />
+
+        <div className="bg-dark-transparent text-white rounded-1 p-2">
+          {formData.recommendations.length === 0 ? (
+            <p className="text-muted">No hay recomendaciones</p>
+          ) : (
+            <ul className="text-start">
+              {formData.recommendations.map((rec, index) => (
+                <li className="recommendation-list-item" key={index}>{rec.recommendation}</li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>

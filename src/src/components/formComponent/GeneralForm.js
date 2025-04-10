@@ -5,7 +5,7 @@ function GeneralForm({ errors, handleFieldChange }) {
   const { formData } = useContext(FormDataContext);
 
   return (
-    <form>
+    <>
       <fieldset className="mb-4">
         <legend>Detalles generales</legend>
         <div className="mb-3">
@@ -40,7 +40,7 @@ function GeneralForm({ errors, handleFieldChange }) {
           )}
         </div>
       </fieldset>
-    </form>
+    </>
   );
 }
 
