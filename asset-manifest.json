@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/bulletin-generator/static/css/main.4cabf404.css",
-    "main.js": "/bulletin-generator/static/js/main.7802b707.js",
-    "static/media/logoAgriLac.png": "/bulletin-generator/static/media/logoAgriLac.ebd72be4bb4085881352.png",
+    "main.css": "/bulletin-generator/static/css/main.d1ac6dcd.css",
+    "main.js": "/bulletin-generator/static/js/main.6ad517a7.js",
+    "static/media/logoCGIAR.jpg": "/bulletin-generator/static/media/logoCGIAR.82b43c1ef821be2b0438.jpg",
     "static/media/logoMaga.png": "/bulletin-generator/static/media/logoMaga.e946269d38b34cf6e1ea.png",
     "static/media/bgDay.jpg": "/bulletin-generator/static/media/bgDay.cd9d2f5cc6c3195d2d09.jpg",
     "static/media/bgNight.jpg": "/bulletin-generator/static/media/bgNight.389e6c60d3ef9556b8c9.jpg",
     "static/media/family.png": "/bulletin-generator/static/media/family.7526b4af4a43c6d91264.png",
     "index.html": "/bulletin-generator/index.html",
-    "main.4cabf404.css.map": "/bulletin-generator/static/css/main.4cabf404.css.map",
-    "main.7802b707.js.map": "/bulletin-generator/static/js/main.7802b707.js.map"
+    "main.d1ac6dcd.css.map": "/bulletin-generator/static/css/main.d1ac6dcd.css.map",
+    "main.6ad517a7.js.map": "/bulletin-generator/static/js/main.6ad517a7.js.map"
   },
   "entrypoints": [
-    "static/css/main.4cabf404.css",
-    "static/js/main.7802b707.js"
+    "static/css/main.d1ac6dcd.css",
+    "static/js/main.6ad517a7.js"
   ]
 }
