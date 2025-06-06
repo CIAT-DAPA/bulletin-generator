@@ -24,10 +24,10 @@ function RainMapForm({ errors, handleFieldChange }) {
     <>
       {/* Group 1: Title */}
       <fieldset className="mb-4">
-        <legend>Titulo</legend>
+        <legend>Época</legend>
         <div className="mb-3">
           <label htmlFor="rainSeason" className="form-label">
-            Temporada de lluvia
+            Época de lluvia
           </label>
           <input
             type="text"

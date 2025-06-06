@@ -10,7 +10,7 @@ function GeneralForm({ errors, handleFieldChange }) {
         <legend>Detalles generales</legend>
         <div className="mb-3">
           <label htmlFor="cityName" className="form-label">
-            Municipio
+            Departamento
           </label>
           <input
             type="text"
@@ -29,7 +29,7 @@ function GeneralForm({ errors, handleFieldChange }) {
             Fecha de emisión del boletin
           </label>
           <input
-            type="date"
+            type="month"
             className="form-control w-auto"
             id="emissionDate"
             value={formData.emissionDate}

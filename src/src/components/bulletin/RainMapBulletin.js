@@ -37,7 +37,7 @@ function RainMapBulletin() {
           </div>
           <h4 className="m-0 fw-light">
             <bold className="fw-bold text-uppercase">
-              {formData.rainSeason || "{Temporada}"}
+              {formData.rainSeason || "{Época}"}
             </bold>{" "}
             {"época de lluvias"}
           </h4>

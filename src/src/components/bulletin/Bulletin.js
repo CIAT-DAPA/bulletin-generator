@@ -60,7 +60,7 @@ function Bulletin({ currentStep, totalSteps }) {
       <div className="bulletin-footer d-flex justify-content-between align-items-center">
         <div>
           <strong className="text-capitalize">
-            {formData.cityName || "{municipio}"}
+            {formData.cityName || "{departamento}"}
           </strong>
         </div>
         <span>

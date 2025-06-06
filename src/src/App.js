@@ -8,7 +8,7 @@ import BulletinB from "./pages/BulletinB";
 function App() {
   return (
     <Router>
-      <Navbar appName="Generador de Boletines" />
+      <Navbar appName="Generador de boletines" />
       <Routes>
         <Route exact path="/bulletin-generator" element={<BulletinA />} />
         <Route path="/b" element={<BulletinB />} />

@@ -136,10 +136,10 @@ function LunarCalendarForm({ errors, handleFieldChange }) {
   return (
     <>
       <fieldset>
-        <legend>Calendario Lunar</legend>
+        <legend>Calendario lunar</legend>
         <div className="mb-3">
           <label htmlFor="calendarMonth" className="form-label">
-            Selecciona Mes y Año
+            Selecciona mes y año
           </label>
           <input
             type="month"
