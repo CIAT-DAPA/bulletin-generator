@@ -32,10 +32,10 @@ function BulletinA() {
     }
     setCurrentStep(step);
   };
+
   return (
     <FormDataProvider>
       <div>
-        
         <div className="container mt-4">
           <StepsProgressBar
             steps={steps}
@@ -61,7 +61,6 @@ function BulletinA() {
             </div>
           </div>
         </div>
-        
       </div>
     </FormDataProvider>
   );

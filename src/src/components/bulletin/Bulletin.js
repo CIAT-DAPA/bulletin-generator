@@ -29,7 +29,7 @@ function Bulletin({ currentStep, totalSteps }) {
     if (!dateString) return "Fecha no disponible";
     const date = new Date(dateString + "T00:00:00");
     let month = date
-      .toLocaleString("es-ES", { month: "short" })
+      .toLocaleString("es-ES", { month: "long" })
       .replace(".", "");
     month = month.charAt(0).toUpperCase() + month.slice(1);
     return `${month}/${date.getFullYear()}`;
